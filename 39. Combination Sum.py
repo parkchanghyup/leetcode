@@ -1,19 +1,18 @@
 class Solution:
 
     def combinationSum(self,candidates: List[int], target: int) -> List[List[int]]:
-        def dfs(nums: List[int], index: int):
-            
-            if sum(nums) > target:
-                return
-            
-            elif sum(nums) == target:
-                
-                result.append(nums)
-                return
-
-            for i in range(index, len(candidates)):
-                dfs(nums + [candidates[i]], i )
-
         result = []
-        dfs([], 0)
+
+        def func(numbers: list, idx: int):
+
+            if sum(numbers) == target:
+                result.append(numbers)
+                return
+            if sum(numbers) > target:
+                return
+
+            for i in range(idx, len(candidates)):
+                func(numbers + [candidates[i]], i)
+
+        func([], 0)
         return result
